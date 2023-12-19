@@ -8,11 +8,6 @@
   <arg name="launch_prefix" default=""/> <!-- gdb -ex run //args -->
   <param name="use_sim_time" value="$(arg use_sim_time)"/>
 
-  <!-- Config files -->
-  <arg name="gbplanner_config_file" default="$(find stage_planner)/config/$(arg robot_name)/gbplanner_config.yaml"/>
-  <arg name="pci_file" default="$(find stage_planner)/config/$(arg robot_name)/planner_control_interface_sim_config.yaml"/>
-  <arg name="voxblox_config_file" default="$(find stage_planner)/config/$(arg robot_name)/voxblox_sim_config.yaml"/>
-  <arg name="map_config_file" default="$(arg voxblox_config_file)"/>
 
       <!-- <arg name="world_file" default="$(find planner_gazebo_sim)/worlds/darpa_subt_final_circuit.world"/> -->
 
@@ -46,7 +41,7 @@
       
       <!-- <arg name="world_file" value="$(find gazebo_cave_world)/worlds/tunnel_circuit_05.sdf"/>  -->
       
-      <arg name="world_file" value="$(find gazebo_cave_world)/worlds/cave_world.world"/> 
+      <arg name="world_file" value="$(find darpa_subt_worlds)/worlds/cave_world.world"/> 
 
       <!-- <arg name="world_file" value="$(find rotors_gazebo)/worlds/$(arg world_file).world" /> -->
 
@@ -80,19 +75,19 @@
       <arg name="model" value="$(find rotors_description)/urdf/mav_generic_odometry_sensor.gazebo" />
       
       <arg name="enable_ground_truth" value="true" />
-      <arg name="x" value="0.0"/>
-      <arg name="y" value="0.0"/>
+      <arg name="x" value="1"/>
+      <arg name="y" value="1"/>
       <arg name="z" value="0.5"/>
     </include>
 
-    <!-- Position controller  
+    
 
-<node name="lee_position_controller_node" pkg="rotors_control" type="lee_position_controller_node" output="screen">
+  <node name="lee_position_controller_node" pkg="rotors_control" type="lee_position_controller_node" output="screen">
       <rosparam command="load" file="$(find rotors_gazebo)/resource/lee_controller_$(arg robot_name).yaml" />
       <rosparam command="load" file="$(find rotors_gazebo)/resource/$(arg robot_name).yaml" />
       <remap from="odometry" to="odometry_sensor1/odometry" />
-    </node>
-    -->
+  </node>
+    
 
   <arg name="odometry_topic" default="$(arg robot_name)/ground_truth/odometry_throttled"/>
   <node name="pose_throttler" type="throttle" pkg="topic_tools" args="messages $(arg robot_name)/ground_truth/pose_with_covariance 10 /msf_core/pose" />
