@@ -20,9 +20,19 @@
 -->
 
 <robot name="pelican" xmlns:xacro="http://ros.org/wiki/xacro">
+
   <xacro:include filename="$(find rotors_description)/urdf/component_snippets.xacro" />
   <!-- Instantiate pelican "mechanics" -->
   <xacro:include filename="$(find rotors_description)/urdf/pelican.xacro" />
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+  <xacro:include filename="$(find rotors_description)/urdf/rplidar.xacro"/>
+
+  <xacro:include filename="$(find rotors_description)/urdf/sbl.xacro" />
+
+  
+  <xacro:sensor_rplidar parent="${namespace}/base_link" topics_ns="${namespace}/rplidar">
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+  </xacro:sensor_rplidar>
 
   <!-- Instantiate a controller. -->
   <xacro:controller_plugin_macro namespace="${namespace}" imu_sub_topic="imu" />
@@ -39,6 +49,7 @@
     <xacro:ground_truth_imu_and_odometry namespace="${namespace}" parent_link="${namespace}/base_link" />
   </xacro:if>
 
+
   <xacro:if value="$(arg enable_logging)">
     <!-- Instantiate a logger -->
     <xacro:bag_plugin_macro
@@ -47,6 +58,10 @@
       rotor_velocity_slowdown_sim="${rotor_velocity_slowdown_sim}"
       wait_to_record_bag="$(arg wait_to_record_bag)" />
   </xacro:if>
+  
 
+
+
+  
 </robot>
 

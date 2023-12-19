@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="echo_bot">
+
+
+<link name="sbl">
+    <visual>
+        <geometry>
+            <box size="0.01 0.01 0.05"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="red"/>
+    </visual>
+    <inertial>
+        <mass value="0.00453592"/>
+        <inertia ixx="4.95353175958e-08" ixy="0.0" ixz="0.0"
+                iyy="6.8587362825e-08" iyz="0.0"
+                izz="4.95353175958e-08"/>
+    </inertial>        
+</link>
+
+<joint name="sbl_joint" type="fixed">
+    <parent link="pelican/base_link"/>
+    <child link="sbl"/>
+    <origin xyz="0.0 0.0 -0.1" rpy="0 1.57 0"/>
+</joint>    
+
+<gazebo reference="sbl">
+    <material>Gazebo/Red</material>
+    <selfCollide>false</selfCollide>
+    <sensor type="ray" name="sbl">
+        <pose>0 0 0 0 1.57 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>1</samples>
+                    <resolution>1</resolution>
+                    <min_angle>0.0</min_angle>
+                    <max_angle>0.0</max_angle>
+                </horizontal>
+                <vertical>
+                    <samples>1</samples>
+                    <resolution>1</resolution>
+                    <min_angle>0.0</min_angle>
+                    <max_angle>0.0</max_angle>
+                </vertical>
+            </scan>
+            <range>
+                <min>0.05</min>
+                <max>10.0</max>
+                <resolution>0.05</resolution>
+            </range>
+        </ray>
+        <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+            <topicName>sbl_down_range</topicName>
+            <frameName>sbl</frameName>
+            <gaussianNoise>0.000</gaussianNoise>
+            <alwaysOn>true</alwaysOn>.
+            <updateRate>10</updateRate>
+            <radiation>infrared</radiation>
+            <fov>0.20</fov>
+            <visualize>false</visualize>
+        </plugin>
+    </sensor>
+</gazebo> 
+
+</robot>

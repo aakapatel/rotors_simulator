@@ -54,6 +54,7 @@
   <!-- Included URDF Files -->
   <xacro:include filename="$(find rotors_description)/urdf/multirotor_base.xacro" />
 
+
   <!-- Instantiate multirotor_base_macro once -->
   <xacro:multirotor_base_macro
     robot_namespace="${namespace}"
@@ -63,8 +64,8 @@
     use_mesh_file="${use_mesh_file}"
     mesh_file="${mesh_file}">
     <xacro:insert_block name="body_inertia" />
-  </xacro:multirotor_base_macro>
-
+  </xacro:multirotor_base_macro>  
+  
   <!-- Instantiate rotors -->
   <xacro:vertical_rotor
     robot_namespace="${namespace}"
@@ -153,4 +154,6 @@
     <origin xyz="0 -${arm_length} ${rotor_offset_top}" rpy="0 0 0" />
     <xacro:insert_block name="rotor_inertia" />
   </xacro:vertical_rotor>
+
+
 </robot>
