@@ -81,13 +81,13 @@
     </include>
 
     
-
+  <!--
   <node name="lee_position_controller_node" pkg="rotors_control" type="lee_position_controller_node" output="screen">
       <rosparam command="load" file="$(find rotors_gazebo)/resource/lee_controller_$(arg robot_name).yaml" />
       <rosparam command="load" file="$(find rotors_gazebo)/resource/$(arg robot_name).yaml" />
       <remap from="odometry" to="odometry_sensor1/odometry" />
   </node>
-    
+  -->  
 
   <arg name="odometry_topic" default="$(arg robot_name)/ground_truth/odometry_throttled"/>
   <node name="pose_throttler" type="throttle" pkg="topic_tools" args="messages $(arg robot_name)/ground_truth/pose_with_covariance 10 /msf_core/pose" />
