@@ -40,9 +40,11 @@
       <!-- <arg name="world_file" value="$(find subt_cave_sim)/worlds/darpa_cave_03.world"/>  -->
       
       <!-- <arg name="world_file" value="/home/aakapatel/catkin_workspaces/exploration_ws/src/Dataset-of-Gazebo-Worlds-Models-and-Maps/worlds/hospital/hospital_two_floors.world" /> -->
+  <!-- <arg name="world_file" value="/home/aakapatel/catkin_workspaces/exploration_ws/src/aws-robomaker-hospital-world/worlds/hospital_two_floors.world" /> -->
 
-		             <arg name="world_file" value="$(find darpa_subt_worlds)/final_prelim_02/final_prelim_02.sdf"/>
-		             <!-- <arg name="world_file" value="$(find darpa_subt_worlds)/final2/final_event_06.sdf"/> -->
+		             <!-- <arg name="world_file" value="$(find darpa_subt_worlds)/final_prelim_03/final_prelim_03.sdf"/> -->
+  <arg name="world_file" value="$(find darpa_subt_worlds)/cave_q/cave_qual.sdf"/>
+		             <!-- <arg name="world_file" value="$(find darpa_subt_worlds)/final_prelim_02/final_prelim_02.sdf"/> -->
 	      
 	<!-- <arg name="world_file" value="$(find rotors_gazebo)/worlds/$(arg world_file).world" /> -->
 
@@ -76,19 +78,17 @@
       <arg name="model" value="$(find rotors_description)/urdf/mav_generic_odometry_sensor.gazebo" />
       
       <arg name="enable_ground_truth" value="true" />
-      <arg name="x" value="1"/>
-      <arg name="y" value="1.5"/>
-      <arg name="z" value="-0.2"/>
+      <arg name="x" value="20"/>
+      <arg name="y" value="0"/>
+      <arg name="z" value="1"/>
     </include>
 
     
-  <!--
-  <node name="lee_position_controller_node" pkg="rotors_control" type="lee_position_controller_node" output="screen">
-      <rosparam command="load" file="$(find rotors_gazebo)/resource/lee_controller_$(arg robot_name).yaml" />
-      <rosparam command="load" file="$(find rotors_gazebo)/resource/$(arg robot_name).yaml" />
+         <node name="roll_pitch_yawrate_thrust_controller_node" pkg="rotors_control" type="roll_pitch_yawrate_thrust_controller_node" >
+      <rosparam command="load" file="$(find rotors_gazebo)/resource/roll_pitch_yawrate_thrust_controller_pelican.yaml" />
+      <rosparam command="load" file="$(find rotors_gazebo)/resource/pelican.yaml" />
       <remap from="odometry" to="odometry_sensor1/odometry" />
-  </node>
-  -->  
+    </node> 
 
   <arg name="odometry_topic" default="$(arg robot_name)/ground_truth/odometry_throttled"/>
   <node name="pose_throttler" type="throttle" pkg="topic_tools" args="messages $(arg robot_name)/ground_truth/pose_with_covariance 10 /msf_core/pose" />
