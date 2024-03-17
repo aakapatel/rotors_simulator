@@ -24,7 +24,7 @@
   <xacro:include filename="$(find rotors_description)/urdf/component_snippets.xacro" />
   <!-- Instantiate pelican "mechanics" -->
   <xacro:include filename="$(find rotors_description)/urdf/pelican.xacro" />
-  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+  <!-- <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/> -->
   <xacro:include filename="$(find rotors_description)/urdf/rplidar.xacro"/>
 
   <xacro:include filename="$(find rotors_description)/urdf/sbl.xacro" />

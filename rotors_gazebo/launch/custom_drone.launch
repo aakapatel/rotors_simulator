@@ -41,7 +41,11 @@
       
       <!-- <arg name="world_file" value="/home/aakapatel/catkin_workspaces/exploration_ws/src/Dataset-of-Gazebo-Worlds-Models-and-Maps/worlds/hospital/hospital_two_floors.world" /> -->
 
+  <!-- <arg name="world_file" value="$(find darpa_subt_worlds)/cave_q/cave_qual.sdf"/> -->
+
+
 		             <arg name="world_file" value="$(find darpa_subt_worlds)/final_prelim_02/final_prelim_02.sdf"/>
+		             <!-- <arg name="world_file" value="$(find darpa_subt_worlds)/final_prelim_03/final_prelim_03.sdf"/> -->
 		             <!-- <arg name="world_file" value="$(find darpa_subt_worlds)/final2/final_event_06.sdf"/> -->
 	      
 	<!-- <arg name="world_file" value="$(find rotors_gazebo)/worlds/$(arg world_file).world" /> -->
@@ -76,9 +80,13 @@
       <arg name="model" value="$(find rotors_description)/urdf/mav_generic_odometry_sensor.gazebo" />
       
       <arg name="enable_ground_truth" value="true" />
-      <arg name="x" value="1"/>
-      <arg name="y" value="1.5"/>
-      <arg name="z" value="-0.2"/>
+      <!-- <arg name="x" value="1"/> -->
+      <!-- <arg name="y" value="1.5"/> -->
+      <!-- <arg name="z" value="-0.2"/> -->
+
+      <arg name="x" value="0"/>
+      <arg name="y" value="0"/>
+      <arg name="z" value="1"/>
     </include>
 
     
